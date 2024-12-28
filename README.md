@@ -2,7 +2,7 @@
 
 ## About
 
-StackTap is a fully open-source Magic: The Gathering deck-building and inventory management software for both players and TCG Shops. We are **mobile-first** and plan on supporting iOS, Android, using a public API that other developer's can consume. Web and desktop support is planned for a later date.
+StackTap is a fully open-source Magic: The Gathering deck-building and inventory management software for both players and TCG Shops. We are **mobile-first** and plan on supporting iOS and Android with a public API that other developer's can consume. Web and desktop support is planned for a later date.
 
 We are under active development, so please be sure to check back frequently on our progress.
 
