@@ -85,7 +85,6 @@ jobs:
           cache-to: type=gha,mode=max
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:${{ github.ref_name }}
       - name: Build and push master branch tags
         if: github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v6
@@ -96,5 +95,6 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:${{ github.ref_name }}
             ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:latest
 
