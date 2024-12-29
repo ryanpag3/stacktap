@@ -18,7 +18,7 @@ export class AuthService {
         return this.usersService.create(email, hashedPassword);
     }
 
-    async signIn(email: string, password: string) {
+    async signIn(email: string, password: string, expiresIn: string) {
         const errorMsg = 'Incorrect email or password provided.';
         const user = await this.usersService.findByEmail(email);
 
@@ -33,7 +33,7 @@ export class AuthService {
 
         // generate JWT
         return {
-            access_token: await this.jwtService.signAsync({ sub: user.id })
+            access_token: await this.jwtService.signAsync({ sub: user.id }, { expiresIn })
         }
 
     }

@@ -11,10 +11,10 @@ export class AuthController {
         await this.authService.signUp(email, password);
     }
 
-    @Post('signin')
+    @Post('mobile/signin')
     @HttpCode(200)
-    async signIn(@Body('email') email: string, @Body('password') password: string) {
-        return this.authService.signIn(email, password);
+    async mobileSignIn(@Body('email') email: string, @Body('password') password: string) {
+        return this.authService.signIn(email, password, '30d');
     }
 
 }
