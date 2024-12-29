@@ -26,6 +26,7 @@ jobs:
         with:
           node-version: 18 # Adjust the Node.js version if necessary
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
 
       # Install dependencies
       - name: Install Dependencies
