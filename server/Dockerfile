@@ -1,27 +1,20 @@
-# Use the official Node.js image as the base image
+# Base image
 FROM node:18
 
-# Set the working directory
+# Create app directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
-COPY yarn.lock ./
+# Install app dependencies
+RUN yarn install
 
-RUN npm install -g @nestjs/cli
-
-# Install dependencies
-RUN yarn install --production
-
-# Copy the rest of the application code
+# Bundle app source
 COPY . .
 
-# Build the NestJS application
+# Creates a "dist" folder with the production build
 RUN yarn build
 
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Start the application
-CMD ["npm", "run", "start:prod"]
+# Start the server using the production build
+CMD [ "node", "dist/main.js" ]
