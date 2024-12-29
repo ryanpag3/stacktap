@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install app dependencies
-RUN yarn install
+RUN yarn install --network-timeout=300000
 
 # Bundle app source
 COPY . .
