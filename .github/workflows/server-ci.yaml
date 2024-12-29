@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-results
-          path: coverage/ # Adjust the path to your test output
+          path: server/coverage/
 
       # Clean up cache if needed
       - name: Cleanup Node Modules
