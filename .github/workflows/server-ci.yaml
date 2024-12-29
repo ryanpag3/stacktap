@@ -57,9 +57,37 @@ jobs:
         run: |
           yarn cache clean
           rm -rf node_modules
-  docker:
+  e2e-tests:
     runs-on: ubuntu-latest
     needs: build-and-test
+    env:
+      DATABASE_HOST: localhost
+      DATABASE_PORT: 5433
+      DATABASE_USER: stacktap
+      DATABASE_PASSWORD: stacktap
+      DATABASE_DB: stacktap
+      JWT_SECRET: fcda17cc-0585-4a52-9ab3-d85dce0c51ad
+    defaults:
+      run:
+        working-directory: ./server
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build and Run Docker Compose
+        run: |
+          docker compose -f docker/docker-compose.yaml up -d
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: yarn install
+      - name: Run e2e tests
+        run: yarn test:e2e
+  
+  docker:
+    runs-on: ubuntu-latest
+    needs: e2e-tests
     defaults:
       run:
         working-directory: ./server
