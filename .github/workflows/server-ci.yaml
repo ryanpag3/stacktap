@@ -85,7 +85,6 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:${{ github.sha }}
             ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:${{ github.ref_name }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/stacktap-server:latest
       - name: Build and push master branch tags
         if: github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v5
